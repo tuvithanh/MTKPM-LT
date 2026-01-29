@@ -1,55 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
 
-// 1. Định nghĩa Strategy Data: Tách dữ liệu ra khỏi UI
 const NAVIGATION_STRATEGY = [
-  { label: "Trang chủ", href: "/Home" },
-  { label: "Sản phẩm", href: "/san-pham" },
-  { label: "Khuyến mãi", href: "/khuyen-mai" },
-  { label: "Cửa hàng", href: "/cua-hang" },
+  { label: "Trang chủ", mode: "home" },
+  { label: "Sản phẩm", mode: "products" },
+  { label: "Khuyến mãi", mode: "offers" },
+  { label: "Cửa hàng", mode: "stores" },
 ];
 
-function Header() {
+function Header({ onNavigate, user, onLogout }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="bg-white shadow-sm">
-      {/* TOP BAR: Giữ nguyên logic của bạn */}
+    <header className="bg-white shadow-sm relative">
       <div className="h-[60px] flex items-center justify-between px-10 border-b">
-        <div className="text-2xl font-bold">
+        <div
+          className="text-2xl font-bold cursor-pointer"
+          onClick={() => onNavigate("home")}
+        >
           <span className="text-sky-500">Convenience</span>
           <span className="text-orange-400 ml-1">Store</span>
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="border border-gray-300 px-4 py-1.5 rounded-full hover:bg-gray-100 transition text-sm">
-            Đăng nhập
-          </button>
-          <button className="border border-gray-300 px-4 py-1.5 rounded-full hover:bg-gray-100 transition text-sm">
-            Đăng ký
-          </button>
-          <button className="relative w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center text-lg shadow-sm">
-            🛒
-            <span className="absolute -top-1 -right-1 text-[10px] bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center">
-              0
-            </span>
-          </button>
+          {user ? (
+            <div className="relative">
+              <div
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <div className="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold border-2 border-sky-100">
+                  {user.username.charAt(0).toUpperCase()}
+                </div>
+              </div>
+
+              {isOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setIsOpen(false)}
+                  ></div>
+                  <div className="absolute right-0 mt-2 w-52 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-20">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <p className="text-sm font-bold text-gray-800">
+                        {user.username}
+                      </p>
+                    </div>
+
+                    {/* NÚT QUẢN LÝ DUY NHẤT CHO ADMIN */}
+                    {user.role === "ADMIN" && (
+                      <button
+                        onClick={() => {
+                          onNavigate("admin-dashboard");
+                          setIsOpen(false);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-sky-600 font-bold hover:bg-sky-50"
+                      >
+                        🚀 Trang Quản Trị
+                      </button>
+                    )}
+
+                    <button
+                      onClick={onLogout}
+                      className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50"
+                    >
+                      Đăng xuất
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            <button
+              onClick={() => onNavigate("login")}
+              className="border px-4 py-1.5 rounded-full text-sm"
+            >
+              Đăng nhập
+            </button>
+          )}
         </div>
       </div>
 
-      {/* NAV BAR: Áp dụng mẫu Strategy để render */}
       <div className="h-[44px] bg-[#7DA8C9] flex items-center justify-center">
-        <nav className="w-full max-w-[1200px] px-10 flex items-center gap-[30px] text-sm font-bold">
+        <nav className="w-full max-w-[1200px] px-10 flex items-center gap-[30px] text-sm font-bold text-white uppercase">
           {NAVIGATION_STRATEGY.map((item, index) => (
-            <a
+            <button
               key={index}
-              href={item.href}
-              className="text-white no-underline hover:text-orange-400 transition-colors duration-200 uppercase tracking-wide"
+              onClick={() => onNavigate(item.mode)}
+              className="hover:text-orange-400 transition-colors bg-transparent border-none cursor-pointer font-bold text-white"
             >
               {item.label}
-            </a>
+            </button>
           ))}
         </nav>
       </div>
     </header>
   );
 }
-
 export default Header;
