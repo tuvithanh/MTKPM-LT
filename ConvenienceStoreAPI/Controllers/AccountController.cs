@@ -1,4 +1,6 @@
 using ConvenienceStoreAPI.Data;
+using ConvenienceStoreAPI.DTOs.Auth;
+using ConvenienceStoreAPI.Helper;
 using ConvenienceStoreAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -114,6 +116,76 @@ namespace ConvenienceStoreAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Xóa tài khoản thành công");
+        }
+
+        // POST: api/Account/create-admin-simple
+        [HttpPost("create-admin-simple")]
+        public async Task<IActionResult> CreateAdminSimple([FromBody] string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return BadRequest("Tên không được để trống.");
+            }
+
+            // 1. Cấu hình mặc định
+            string defaultUsername = "admin_" + name.Replace(" ", "").ToLower();
+            string defaultPassword = "admin@123";
+            string adminRole = "ADMIN";
+
+            // 2. Kiểm tra trùng Username
+            if (await _context.UserAccounts.AnyAsync(a => a.Username == defaultUsername))
+            {
+                defaultUsername += new Random().Next(10, 99).ToString();
+            }
+
+            // 3. Sử dụng Transaction để đảm bảo an toàn dữ liệu
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                // Tạo User
+                var user = new User
+                {
+                    Name = name,
+                    CreatedAt = DateTime.Now
+                };
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                // Tạo Account
+                var account = new UserAccount
+                {
+                    UserId = user.Id,
+                    Username = defaultUsername,
+                    // Sử dụng PasswordHelper.Hash như bạn đã có trong dự án
+                    Password = PasswordHelper.Hash(defaultPassword),
+                    Role = adminRole,
+                    CreatedAt = DateTime.Now,
+                    IsActive = true
+                };
+
+                _context.UserAccounts.Add(account);
+                await _context.SaveChangesAsync();
+
+                // Hoàn tất lưu dữ liệu
+                await transaction.CommitAsync();
+
+                return Ok(new
+                {
+                    Status = "Success",
+                    Message = "Tạo tài khoản Admin thành công",
+                    Data = new
+                    {
+                        Username = defaultUsername,
+                        PasswordDefault = defaultPassword,
+                        Role = adminRole
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return StatusCode(500, $"Lỗi hệ thống: {ex.Message}");
+            }
         }
     }
 }

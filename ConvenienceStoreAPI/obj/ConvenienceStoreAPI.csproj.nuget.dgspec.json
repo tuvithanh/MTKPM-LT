@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Documents\\GitHub\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj": {}
+    "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Documents\\GitHub\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj": {
+    "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Documents\\GitHub\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj",
+        "projectUniqueName": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj",
         "projectName": "ConvenienceStoreAPI",
-        "projectPath": "C:\\Users\\ASUS\\Documents\\GitHub\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Documents\\GitHub\\MTKPM-LT\\ConvenienceStoreAPI\\obj\\",
+        "projectPath": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\ConvenienceStoreAPI.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -50,6 +50,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.23, )"
@@ -67,6 +75,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -88,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.309/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
