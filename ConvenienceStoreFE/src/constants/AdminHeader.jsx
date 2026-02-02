@@ -2,8 +2,7 @@ import React from "react";
 
 const ADMIN_NAV_STRATEGY = [
   { label: "Dashboard", mode: "admin-dashboard" },
-  { label: "Người dùng", mode: "admin-users" },
-  { label: "Tài khoản", mode: "admin-accounts" },
+  { label: "Quản lý người dùng", mode: "admin-users-management" },
   { label: "Danh mục", mode: "admin-categories" },
   { label: "Sản phẩm", mode: "admin-products" },
 ];

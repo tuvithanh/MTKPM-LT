@@ -21,6 +21,11 @@ namespace ConvenienceStoreAPI.Data
         public DbSet<UserAccount> UserAccounts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<PaymentLog> PaymentLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Cấu hình mối quan hệ: 1 User có thể có 1 Account

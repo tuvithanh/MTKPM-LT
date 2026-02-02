@@ -4,6 +4,11 @@ import AdminHeader from "./constants/AdminHeader"; // Bạn cần tạo file nà
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import "./index.css";
+import CategoryPage from "./pages/Admin/CategoryPage";
+import UserManagement from "./pages/Admin/UserManagement";
+import ProductPage from "./pages/Admin/ProductPage";
+import UserProductPage from "./pages/UserProductPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const [currentMode, setCurrentMode] = useState("home");
@@ -51,6 +56,11 @@ function App() {
         {/* TRANG NGƯỜI DÙNG THƯỜNG */}
         {currentMode === "home" && <Home user={user} />}
 
+        {currentMode === "products" && (
+          <UserProductPage onNavigate={setCurrentMode} />
+        )}
+        {currentMode === "cart" && <CartPage onNavigate={setCurrentMode} />}
+
         {(currentMode === "login" || currentMode === "register") && (
           <Auth initialMode={currentMode} onLoginSuccess={handleLoginSuccess} />
         )}
@@ -61,18 +71,9 @@ function App() {
             {currentMode === "admin-dashboard" && (
               <div className="p-10 text-2xl font-bold">Thống kê tổng quan</div>
             )}
-            {currentMode === "admin-users" && (
-              <div className="p-10 text-2xl font-bold">Quản lý Người dùng</div>
-            )}
-            {currentMode === "admin-accounts" && (
-              <div className="p-10 text-2xl font-bold">Quản lý Tài khoản</div>
-            )}
-            {currentMode === "admin-categories" && (
-              <div className="p-10 text-2xl font-bold">Quản lý Danh mục</div>
-            )}
-            {currentMode === "admin-products" && (
-              <div className="p-10 text-2xl font-bold">Quản lý Sản phẩm</div>
-            )}
+            {currentMode === "admin-users-management" && <UserManagement />}
+            {currentMode === "admin-categories" && <CategoryPage />}
+            {currentMode === "admin-products" && <ProductPage />}
           </>
         )}
       </main>

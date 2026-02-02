@@ -1,6 +1,8 @@
 using ConvenienceStoreAPI.Data;
 using ConvenienceStoreAPI.Infrastructure.AuthStrategies;
+using ConvenienceStoreAPI.Infrastructure.CartStrategies;
 using ConvenienceStoreAPI.Infrastructure.Factories;
+using ConvenienceStoreAPI.Infrastructure.Repositories;
 using ConvenienceStoreAPI.Services.Implementations;
 using ConvenienceStoreAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -18,7 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthStrategy, LocalAuthStrategy>();
 builder.Services.AddScoped<IAuthFactory, AuthFactory>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<ICartPriceStrategy, DefaultPriceStrategy>();
 // 3. Cấu hình Authentication với JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -52,20 +55,25 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 5. Cấu hình Middleware
+// 1. Phải đặt Swagger đầu tiên
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// 2. Chuyển hướng HTTPS
 app.UseHttpsRedirection();
 
-// Bật CORS trước Authentication
+// 3. Phải bật StaticFiles để truy cập thư mục wwroot (ẢNH Ở ĐÂY)
+app.UseStaticFiles();
+
+// 4. Bật CORS (Chỉ dùng 1 lần và dùng đúng tên Policy "AllowReact")
 app.UseCors("AllowReact");
 
-app.UseAuthentication(); // Xác thực danh tính
-app.UseAuthorization();  // Phân quyền
+// 5. Cuối cùng mới đến Auth
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

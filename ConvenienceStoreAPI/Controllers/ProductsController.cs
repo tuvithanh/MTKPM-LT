@@ -66,4 +66,25 @@ public async Task<IActionResult> Update(int id, Product dto)
         await _context.SaveChangesAsync();
         return Ok();
     }
+
+    [HttpPost("upload")]
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+        if (file == null || file.Length == 0) return BadRequest("File không hợp lệ");
+
+        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwroot", "images");
+        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+        var filePath = Path.Combine(folderPath, fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        // CHỈ TRẢ VỀ ĐƯỜNG DẪN TƯƠNG ĐỐI
+        var relativeUrl = $"/images/{fileName}";
+        return Ok(new { url = relativeUrl });
+    }
 }
