@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react"; // 1. Thêm useEffect
 import axios from "axios";
+import Notification from "../components/Notification";
+import toast from "react-hot-toast";
+
 
 const Auth = ({ initialMode, onLoginSuccess }) => {
   // 2. Nhận prop initialMode
@@ -28,7 +31,7 @@ const Auth = ({ initialMode, onLoginSuccess }) => {
     const endpoint = isLogin ? "login" : "register";
     try {
       const response = await axios.post(
-        `https://localhost:7197/api/auth/${endpoint}`,
+        `http://localhost:5022/api/auth/${endpoint}`,
         formData,
         { withCredentials: true }, // QUAN TRỌNG: Để trình duyệt nhận và gửi Cookies
       );
@@ -38,10 +41,9 @@ const Auth = ({ initialMode, onLoginSuccess }) => {
         if (response.data.token)
           localStorage.setItem("token", response.data.token);
 
-        setMessage({
-          type: "success",
-          content: `Chào mừng trở lại, ${response.data.username}!`,
-        });
+        toast.success(`Chào mừng trở lại, ${response.data.username}!`, {
+  duration: 3000,
+});
 
         // Đợi 1 chút để user kịp thấy thông báo thành công rồi chuyển trang
         setTimeout(() => {
