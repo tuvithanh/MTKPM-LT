@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "./constants/Header";
-import AdminHeader from "./constants/AdminHeader"; // Bạn cần tạo file này (xem ở bước 2)
+import AdminHeader from "./constants/AdminHeader";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
+import OrderSuccess from "./pages/OrderSuccess";
 import "./index.css";
 import CategoryPage from "./pages/Admin/CategoryPage";
 import UserManagement from "./pages/Admin/UserManagement";
@@ -18,6 +19,12 @@ function App() {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
+    }
+
+    // Detect route từ URL path
+    const path = window.location.pathname;
+    if (path.includes("/order-success")) {
+      setCurrentMode("order-success");
     }
   }, []);
 
@@ -60,6 +67,9 @@ function App() {
           <UserProductPage onNavigate={setCurrentMode} />
         )}
         {currentMode === "cart" && <CartPage onNavigate={setCurrentMode} />}
+        {currentMode === "order-success" && (
+          <OrderSuccess onNavigate={setCurrentMode} />
+        )}
 
         {(currentMode === "login" || currentMode === "register") && (
           <Auth initialMode={currentMode} onLoginSuccess={handleLoginSuccess} />

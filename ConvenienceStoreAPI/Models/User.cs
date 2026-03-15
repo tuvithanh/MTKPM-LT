@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ConvenienceStoreAPI.Models
 {
@@ -42,7 +43,8 @@ namespace ConvenienceStoreAPI.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Liên kết với User
+        // Liên kết với User (JsonIgnore để tránh circular reference)
+        [JsonIgnore]
         public User User { get; set; } = null!;
     }
 }

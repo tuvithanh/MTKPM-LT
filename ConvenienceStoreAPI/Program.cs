@@ -2,6 +2,7 @@ using ConvenienceStoreAPI.Data;
 using ConvenienceStoreAPI.Infrastructure.AuthStrategies;
 using ConvenienceStoreAPI.Infrastructure.CartStrategies;
 using ConvenienceStoreAPI.Infrastructure.Factories;
+using ConvenienceStoreAPI.Infrastructure.Commands;
 using ConvenienceStoreAPI.Infrastructure.Repositories;
 using ConvenienceStoreAPI.Services.Implementations;
 using ConvenienceStoreAPI.Services.Interfaces;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<IAuthFactory, AuthFactory>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICartPriceStrategy, DefaultPriceStrategy>();
+builder.Services.AddScoped<OrderCommandExecutor>();
 // 3. Cấu hình Authentication với JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

@@ -62,8 +62,7 @@ export default function CartPage({ onNavigate }) {
       userId: user.id,
       paymentMethod: paymentMethod, // "COD" hoặc "VNPAY"
       items: cartItems.map((item) => ({
-        productId: item.id,
-        name: item.name,
+        id: item.id,
         price: item.price,
         quantity: item.quantity,
       })),
@@ -81,7 +80,7 @@ export default function CartPage({ onNavigate }) {
       if (response.ok) {
         if (paymentMethod === "VNPAY") {
           // Nếu là VNPay, chuyển hướng sang trang thanh toán của VNPay
-          window.location.href = result.paymentData;
+          window.location.href = result.paymentUrl;
         } else {
           // Nếu là COD
           alert("🎉 Đặt hàng thành công! Đơn hàng sẽ được giao đến bạn sớm.");

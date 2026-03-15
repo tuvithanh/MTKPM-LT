@@ -12,10 +12,10 @@ namespace ConvenienceStoreAPI.Controllers
         private readonly ICartRepository _cartRepo;
         private readonly ICartPriceStrategy _priceStrategy;
 
-        public CartController(ICartRepository cartRepo)
+        public CartController(ICartRepository cartRepo, ICartPriceStrategy priceStrategy)
         {
             _cartRepo = cartRepo;
-            _priceStrategy = new DefaultPriceStrategy(); // Có thể dùng Factory để đổi Strategy
+            _priceStrategy = priceStrategy;  // Inject thay vì hardcode
         }
 
         [HttpGet("{userId}")]
