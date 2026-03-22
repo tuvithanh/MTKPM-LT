@@ -1,6 +1,5 @@
 ﻿using ConvenienceStoreAPI.Infrastructure.PaymentStrategies;
 using Microsoft.Extensions.Configuration;
-using System.Globalization;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,59 +15,67 @@ public class VNPayPaymentStrategy : IPaymentStrategy
 
     public async Task<string> ProcessPayment(decimal amount, string orderId)
     {
-        // Đọc thông tin từ appsettings.json
-        var vnp_TmnCode = _configuration["VNPay:TmnCode"];
-        var vnp_HashSecret = _configuration["VNPay:HashSecret"];
-        var vnp_Url = _configuration["VNPay:BaseUrl"];
-        var ngrokUrl = _configuration["VNPay:NgrokUrl"];
+        // Lấy cấu hình VNPay từ appsettings.json
+        string baseUrl = _configuration["VNPay:BaseUrl"];
+        string returnUrl = _configuration["VNPay:ReturnUrl"];
+        string tmnCode = _configuration["VNPay:TmnCode"];
+        string hashSecret = _configuration["VNPay:HashSecret"];
+        string version = _configuration["VNPay:Version"];
+        string command = _configuration["VNPay:Command"];
+        string currCode = _configuration["VNPay:CurrCode"];
+        string locale = _configuration["VNPay:Locale"];
 
-        var vnpayData = new SortedList<string, string>(new VNPayComparer());
-        vnpayData.Add("vnp_Version", "2.1.0");
-        vnpayData.Add("vnp_Command", "pay");
-        vnpayData.Add("vnp_TmnCode", vnp_TmnCode);
-        vnpayData.Add("vnp_Amount", ((long)amount * 100).ToString());
-        vnpayData.Add("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
-        vnpayData.Add("vnp_CurrCode", "VND");
-        vnpayData.Add("vnp_IpAddr", "127.0.0.1");
-        vnpayData.Add("vnp_Locale", "vn");
-        vnpayData.Add("vnp_OrderInfo", "Thanh toan don hang: " + orderId);
-        vnpayData.Add("vnp_OrderType", "other");
-        vnpayData.Add("vnp_ReturnUrl", $"{ngrokUrl}/api/order/vnpay-return");
-        vnpayData.Add("vnp_TxnRef", orderId);
+        // Chuẩn bị thông tin giao dịch
+        string txnRef = orderId;
+        string amountVNPay = ((long)amount * 100).ToString();
+        string ipAddress = "127.0.0.1";
 
-        StringBuilder data = new StringBuilder();
-        foreach (var kv in vnpayData)
+        // Tạo SortedDictionary theo alphabetical order (REQUIRED by VNPay)
+        var vnp_Params = new SortedDictionary<string, string>
         {
-            data.Append(WebUtility.UrlEncode(kv.Key) + "=" + WebUtility.UrlEncode(kv.Value) + "&");
+            {"vnp_Amount", amountVNPay},
+            {"vnp_Command", command},
+            {"vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss")},
+            {"vnp_CurrCode", currCode},
+            {"vnp_IpAddr", ipAddress},
+            {"vnp_Locale", locale},
+            {"vnp_OrderInfo", "Thanh toan don hang " + orderId},
+            {"vnp_OrderType", "other"},
+            {"vnp_ReturnUrl", returnUrl},
+            {"vnp_TmnCode", tmnCode},
+            {"vnp_TxnRef", txnRef},
+            {"vnp_Version", version}
+        };
+
+        // Build hash data - theo chuẩn VNPay: URL-ENCODED query string
+        string hashData = "";
+        int i = 0;
+        foreach (var item in vnp_Params)
+        {
+            if (i == 1)
+            {
+                hashData += "&" + WebUtility.UrlEncode(item.Key) + "=" + WebUtility.UrlEncode(item.Value);
+            }
+            else
+            {
+                hashData += WebUtility.UrlEncode(item.Key) + "=" + WebUtility.UrlEncode(item.Value);
+                i = 1;
+            }
         }
 
-        string rawData = data.ToString().Remove(data.Length - 1);
-        string vnp_SecureHash = HmacSHA512(vnp_HashSecret, rawData);
+        // Tính HMAC SHA512 từ URL-ENCODED hash data (VNPay requirement)
+        string secureHash = HmacSHA512(hashSecret, hashData);
 
-        return vnp_Url + "?" + rawData + "&vnp_SecureHash=" + vnp_SecureHash;
+        // Build payment URL
+        string paymentUrl = baseUrl + "?" + hashData + "&vnp_SecureHash=" + secureHash;
+
+        return paymentUrl;
     }
 
-    private string HmacSHA512(string key, string inputData)
+    private string HmacSHA512(string key, string input)
     {
-        var hash = new StringBuilder();
-        byte[] keyBytes = Encoding.UTF8.GetBytes(key);
-        byte[] inputBytes = Encoding.UTF8.GetBytes(inputData);
-        using var hmac = new HMACSHA512(keyBytes);
-        byte[] hashValue = hmac.ComputeHash(inputBytes);
-        foreach (var theByte in hashValue) hash.Append(theByte.ToString("x2"));
-        return hash.ToString();
-    }
-}
-
-// LỚP FIX LỖI: Định nghĩa VNPayComparer ngay trong file này (nhưng ngoài class Strategy)
-public class VNPayComparer : IComparer<string>
-{
-    public int Compare(string x, string y)
-    {
-        if (x == y) return 0;
-        if (x == null) return -1;
-        if (y == null) return 1;
-        var vnpCompare = CompareInfo.GetCompareInfo("en-US");
-        return vnpCompare.Compare(x, y, CompareOptions.Ordinal);
+        var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(key));
+        var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(input));
+        return BitConverter.ToString(hash).Replace("-", "").ToLower();
     }
 }

@@ -1,28 +1,27 @@
-// src/constants/bannerData.js
+import banner1 from "../assets/banner1.jpg";
+import banner2 from "../assets/banner2.jpg";
+import banner3 from "../assets/banner3.jpg";
 
 export const BANNERS = [
   {
     id: 1,
-    image:
-      "https://gs25.com.vn/wp-content/uploads/2023/12/web-banner_722x372-2.jpg",
-    alt: "Banner Khuyến mãi Tết",
-    link: "#khuyen-mai-tet",
-    title: "Đón Tết Rộn Ràng, Ngập Tràn Ưu Đãi",
+    image: banner1,
+    alt: "Banner 1",
+    link: "/",
+    title: "Banner 1",
   },
   {
     id: 2,
-    image:
-      "https://gs25.com.vn/wp-content/uploads/2023/12/web-banner_722x372-1.jpg",
-    alt: "Banner Sản phẩm mới",
-    link: "#san-pham-moi",
-    title: "Khám Phá Sản Phẩm Mới Mỗi Ngày",
+    image: banner2,
+    alt: "Banner 2",
+    link: "/",
+    title: "Banner 2",
   },
   {
     id: 3,
-    image:
-      "https://gs25.com.vn/wp-content/uploads/2023/12/web-banner_722x372.jpg",
-    alt: "Banner Tuyển dụng",
-    link: "#tuyen-dung",
-    title: "Tuyển Dụng Cửa Hàng GS25",
+    image: banner3,
+    alt: "Banner 3",
+    link: "/",
+    title: "Banner 3",
   },
 ];

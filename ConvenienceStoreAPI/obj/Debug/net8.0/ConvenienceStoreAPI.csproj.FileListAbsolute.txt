@@ -294,4 +294,3 @@ D:\Learning\HK7\MTKPM-LT\ConvenienceStoreAPI\obj\Debug\net8.0\ref\ConvenienceSto
 D:\Learning\HK7\MTKPM-LT\ConvenienceStoreAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\Learning\HK7\MTKPM-LT\ConvenienceStoreAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Learning\HK7\MTKPM-LT\ConvenienceStoreAPI\bin\Debug\net8.0\ConvenienceStoreAPI.staticwebassets.runtime.json
-D:\Learning\HK7\MTKPM-LT\ConvenienceStoreAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
