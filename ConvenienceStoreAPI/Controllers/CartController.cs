@@ -22,6 +22,10 @@ namespace ConvenienceStoreAPI.Controllers
 
             // Attach Observer
             _notificationSubject.Attach(new NotificationLogger());
+        public CartController(ICartRepository cartRepo, ICartPriceStrategy priceStrategy)
+        {
+            _cartRepo = cartRepo;
+            _priceStrategy = priceStrategy;  // Inject thay vì hardcode
         }
 
         [HttpGet("{userId}")]
