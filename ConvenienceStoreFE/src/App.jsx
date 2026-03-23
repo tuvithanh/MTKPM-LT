@@ -11,6 +11,7 @@ import ProductPage from "./pages/Admin/ProductPage";
 import UserProductPage from "./pages/UserProductPage";
 import CartPage from "./pages/CartPage";
 import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer";
 
 function App() {
   const [currentMode, setCurrentMode] = useState("home");
@@ -90,6 +91,7 @@ function App() {
           </>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
