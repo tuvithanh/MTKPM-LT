@@ -1,3 +1,4 @@
+using ConvenienceStoreAPI.Observer;
 using ConvenienceStoreAPI.Data;
 using ConvenienceStoreAPI.Infrastructure.AuthStrategies;
 using ConvenienceStoreAPI.Infrastructure.CartStrategies;
@@ -23,6 +24,9 @@ builder.Services.AddScoped<IAuthFactory, AuthFactory>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICartPriceStrategy, DefaultPriceStrategy>();
+
+builder.Services.AddSingleton<NotificationSubject>();
+
 builder.Services.AddScoped<OrderCommandExecutor>();
 // 3. Cấu hình Authentication với JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

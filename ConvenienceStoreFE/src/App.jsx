@@ -10,6 +10,7 @@ import UserManagement from "./pages/Admin/UserManagement";
 import ProductPage from "./pages/Admin/ProductPage";
 import UserProductPage from "./pages/UserProductPage";
 import CartPage from "./pages/CartPage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [currentMode, setCurrentMode] = useState("home");
@@ -46,6 +47,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* TOAST NOTIFICATION */}
+    <Toaster position="top-right" reverseOrder={false} />
       {/* STRATEGY PATTERN: 
           Nếu mode là admin-*, hiển thị AdminHeader. Ngược lại hiển thị Header thường 
       */}

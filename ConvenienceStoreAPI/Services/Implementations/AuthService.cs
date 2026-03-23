@@ -1,4 +1,5 @@
-﻿using ConvenienceStoreAPI.Data;
+﻿using ConvenienceStoreAPI.Observer;
+using ConvenienceStoreAPI.Data;
 using ConvenienceStoreAPI.DTOs.Auth;
 using ConvenienceStoreAPI.Helper;
 using ConvenienceStoreAPI.Infrastructure.Factories;
@@ -72,20 +73,24 @@ namespace ConvenienceStoreAPI.Services.Implementations
             }
         }
 
-        public async Task<AuthResponse> LoginAsync(LoginRequest request)
-        {
-            var strategy = _authFactory.GetStrategy(request.Provider);
-            var account = await strategy.AuthenticateAsync(request);
+       public async Task<AuthResponse> LoginAsync(LoginRequest request)
+{
+    var strategy = _authFactory.GetStrategy(request.Provider);
+    var account = await strategy.AuthenticateAsync(request);
 
-            if (account == null) throw new UnauthorizedAccessException("Sai tài khoản hoặc mật khẩu.");
+    if (account == null)
+        throw new UnauthorizedAccessException("Sai tài khoản hoặc mật khẩu.");
 
-            return new AuthResponse
-            {
-                Username = account.Username,
-                Token = GenerateJwtToken(account),
-                Role = account.Role,
-            };
-        }
+    // 🔔 TẠO THÔNG BÁO
+    NotificationStore.Notifications.Add($"User {account.Username} đã đăng nhập");
+
+    return new AuthResponse
+    {
+        Username = account.Username,
+        Token = GenerateJwtToken(account),
+        Role = account.Role,
+    };
+}
 
         public async Task<bool> ChangePasswordAsync(ChangePasswordRequest request)
         {
