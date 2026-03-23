@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConvenienceStoreAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea645e9c7ce4085da4a8f30bff008a5a052679a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3f76becca40629fedd6ccb5aa6d6cfc4a7849e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConvenienceStoreAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConvenienceStoreAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

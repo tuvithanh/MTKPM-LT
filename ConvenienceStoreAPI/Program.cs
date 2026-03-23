@@ -71,7 +71,7 @@ if (app.Environment.IsDevelopment())
 // 2. Chuyển hướng HTTPS
 app.UseHttpsRedirection();
 
-// 3. Phải bật StaticFiles để truy cập thư mục wwroot (ẢNH Ở ĐÂY)
+// 3. Phải bật StaticFiles để truy cập thư mục wwwroot (ẢNH Ở ĐÂY)
 app.UseStaticFiles();
 
 // 4. Bật CORS (Chỉ dùng 1 lần và dùng đúng tên Policy "AllowReact")

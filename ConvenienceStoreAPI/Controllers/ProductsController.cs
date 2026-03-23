@@ -72,7 +72,7 @@ public async Task<IActionResult> Update(int id, Product dto)
     {
         if (file == null || file.Length == 0) return BadRequest("File không hợp lệ");
 
-        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwroot", "images");
+        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);

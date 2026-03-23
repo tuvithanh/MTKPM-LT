@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|d:\\learning\\hk7\\mtkpm-lt\\conveniencestoreapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|d:\\learning\\hk7\\mtkpm-lt\\conveniencestoreapi\\infrastructure\\paymentstrategies\\vnpaypaymentstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|solutionrelative:infrastructure\\paymentstrategies\\vnpaypaymentstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -99,10 +103,6 @@
       "RelativeMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|solutionrelative:models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|d:\\learning\\hk7\\mtkpm-lt\\conveniencestoreapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|d:\\learning\\hk7\\mtkpm-lt\\conveniencestoreapi\\infrastructure\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF7BCD71-6BCC-4873-88C7-05A32A183374}|ConvenienceStoreAPI.csproj|solutionrelative:infrastructure\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -182,19 +182,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
-              "ToolTip": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\CartController.cs",
-              "RelativeToolTip": "Controllers\\CartController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T06:20:38.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
@@ -206,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CartItemDTO.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\DTOs\\Cart\\CartItemDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\Cart\\CartItemDTO.cs",
@@ -218,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LocalAuthStrategy.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\AuthStrategies\\LocalAuthStrategy.cs",
               "RelativeDocumentMoniker": "Infrastructure\\AuthStrategies\\LocalAuthStrategy.cs",
@@ -230,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "IAuthStrategy.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\AuthStrategies\\IAuthStrategy.cs",
               "RelativeDocumentMoniker": "Infrastructure\\AuthStrategies\\IAuthStrategy.cs",
@@ -242,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CODPaymentStrategy.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\PaymentStrategies\\CODPaymentStrategy.cs",
               "RelativeDocumentMoniker": "Infrastructure\\PaymentStrategies\\CODPaymentStrategy.cs",
@@ -254,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IPaymentStrategy.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\PaymentStrategies\\IPaymentStrategy.cs",
               "RelativeDocumentMoniker": "Infrastructure\\PaymentStrategies\\IPaymentStrategy.cs",
@@ -266,20 +254,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "VNPayPaymentStrategy.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\PaymentStrategies\\VNPayPaymentStrategy.cs",
               "RelativeDocumentMoniker": "Infrastructure\\PaymentStrategies\\VNPayPaymentStrategy.cs",
               "ToolTip": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\PaymentStrategies\\VNPayPaymentStrategy.cs",
               "RelativeToolTip": "Infrastructure\\PaymentStrategies\\VNPayPaymentStrategy.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowFAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-02T05:17:13.439Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAgwFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T13:28:20.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
+              "ToolTip": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\CartController.cs",
+              "RelativeToolTip": "Controllers\\CartController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T06:20:38.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
@@ -291,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -303,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "Controllers\\CategoriesController.cs",
@@ -315,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -327,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CartReposity.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\Repositories\\CartReposity.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Repositories\\CartReposity.cs",
@@ -339,7 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "DefaultPriceStrategy.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\CartStrategies\\DefaultPriceStrategy.cs",
               "RelativeDocumentMoniker": "Infrastructure\\CartStrategies\\DefaultPriceStrategy.cs",
@@ -351,7 +364,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -363,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "CheckoutRequest.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\DTOs\\Checkout\\CheckoutRequest.cs",
               "RelativeDocumentMoniker": "DTOs\\Checkout\\CheckoutRequest.cs",
@@ -375,7 +388,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
@@ -387,7 +400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "PaymentFactory.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Infrastructure\\Factories\\PaymentFactory.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Factories\\PaymentFactory.cs",
@@ -399,7 +412,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "RegisterRequest.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\DTOs\\Auth\\RegisterRequest.cs",
               "RelativeDocumentMoniker": "DTOs\\Auth\\RegisterRequest.cs",
@@ -411,7 +424,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "OrderDetail.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Models\\OrderDetail.cs",
               "RelativeDocumentMoniker": "Models\\OrderDetail.cs",
@@ -423,7 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "PaymentLog.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Models\\PaymentLog.cs",
               "RelativeDocumentMoniker": "Models\\PaymentLog.cs",
@@ -435,7 +448,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "ChangePasswordRequest.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\DTOs\\Auth\\ChangePasswordRequest.cs",
               "RelativeDocumentMoniker": "DTOs\\Auth\\ChangePasswordRequest.cs",
@@ -447,7 +460,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Models\\Order.cs",
               "RelativeDocumentMoniker": "Models\\Order.cs",
@@ -483,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Models\\Cart.cs",
               "RelativeDocumentMoniker": "Models\\Cart.cs",
@@ -492,18 +505,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-01T06:17:27.205Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Learning\\HK7\\MTKPM-LT\\ConvenienceStoreAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T13:28:20.615Z"
             },
             {
               "$type": "Document",
