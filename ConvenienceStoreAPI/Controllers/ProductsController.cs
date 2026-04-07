@@ -1,13 +1,15 @@
+using ConvenienceStoreAPI.Data;
+using ConvenienceStoreAPI.Infrastructure.Logging;
+using ConvenienceStoreAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ConvenienceStoreAPI.Data;
-using ConvenienceStoreAPI.Models;
 
 [Route("api/products")]
 [ApiController]
 public class ProductsController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly ActivityLogger _logger = ActivityLogger.Instance;
 
     public ProductsController(AppDbContext context)
     {
@@ -30,6 +32,7 @@ public class ProductsController : ControllerBase
           product.Id = 0;
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
+        _logger.LogCreate("PRODUCT", $"Đã thêm sản phẩm: Id={product.Id}, Name=\"{product.Name}\", Price={product.Price:N0}đ, CategoryId={product.CategoryId}");
         return Ok(product);
     }
 
@@ -48,12 +51,15 @@ public async Task<IActionResult> Update(int id, Product dto)
     if (!categoryExists)
         return BadRequest("CategoryId does not exist");
 
-    product.Name = dto.Name;
+        string oldName = product.Name;
+        decimal oldPrice = product.Price;
+        product.Name = dto.Name;
     product.Price = dto.Price;
     product.CategoryId = dto.CategoryId;
 
     await _context.SaveChangesAsync();
-    return Ok(product);
+        _logger.LogUpdate("PRODUCT", $"Đã sửa sản phẩm Id={id}: Name \"{oldName}\"→\"{product.Name}\", Price {oldPrice:N0}→{product.Price:N0}đ");
+        return Ok(product);
 }
     // DELETE: api/products/5
     [HttpDelete("{id}")]
@@ -64,6 +70,7 @@ public async Task<IActionResult> Update(int id, Product dto)
 
         _context.Products.Remove(product);
         await _context.SaveChangesAsync();
+        _logger.LogDelete("PRODUCT", $"Đã xóa sản phẩm: Id={id}, Name=\"{product.Name}\", Price={product.Price:N0}đ");
         return Ok();
     }
 
@@ -72,7 +79,7 @@ public async Task<IActionResult> Update(int id, Product dto)
     {
         if (file == null || file.Length == 0) return BadRequest("File không hợp lệ");
 
-        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwroot", "images");
+        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
         var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
