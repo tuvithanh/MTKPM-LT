@@ -1,4 +1,4 @@
-﻿using ConvenienceStoreAPI.DTOs.Cart;
+using ConvenienceStoreAPI.DTOs.Cart;
 using ConvenienceStoreAPI.Infrastructure.CartStrategies;
 using ConvenienceStoreAPI.Infrastructure.Repositories;
 using ConvenienceStoreAPI.Observer;
@@ -22,6 +22,7 @@ namespace ConvenienceStoreAPI.Controllers
 
             // Attach Observer
             _notificationSubject.Attach(new NotificationLogger());
+        }
         public CartController(ICartRepository cartRepo, ICartPriceStrategy priceStrategy)
         {
             _cartRepo = cartRepo;

@@ -1,14 +1,15 @@
+using ConvenienceStoreAPI.Data;     
+using ConvenienceStoreAPI.Infrastructure.Logging;
+using ConvenienceStoreAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ConvenienceStoreAPI.Data;     
-using ConvenienceStoreAPI.Models;
 
 [Route("api/categories")]
 [ApiController]
 public class CategoriesController : ControllerBase
 {
     private readonly AppDbContext _context;
-
+    private readonly ActivityLogger _logger = ActivityLogger.Instance;
     public CategoriesController(AppDbContext context)
     {
         _context = context;
@@ -27,6 +28,7 @@ public class CategoriesController : ControllerBase
     {
         _context.Categories.Add(category);
         await _context.SaveChangesAsync();
+        _logger.LogCreate("CATEGORY", $"Đã thêm danh mục: Id={category.Id}, Name=\"{category.Name}\"");
         return Ok(category);
     }
 
@@ -34,10 +36,14 @@ public class CategoriesController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, Category category)
     {
+        var existing = await _context.Categories.AsNoTracking()
+                                               .FirstOrDefaultAsync(c => c.Id == id);
+        string oldName = existing?.Name ?? "N/A";
         category.Id = id;
 
         _context.Entry(category).State = EntityState.Modified;
         await _context.SaveChangesAsync();
+        _logger.LogUpdate("CATEGORY", $"Đã sửa danh mục Id={id}: \"{oldName}\" → \"{category.Name}\"");
         return Ok(category);
     }
 
@@ -50,6 +56,7 @@ public class CategoriesController : ControllerBase
 
         _context.Categories.Remove(category);
         await _context.SaveChangesAsync();
+        _logger.LogDelete("CATEGORY", $"Đã xóa danh mục: Id={id}, Name=\"{category.Name}\"");
         return Ok();
     }
 }
